@@ -64,8 +64,8 @@
 
     const initOnce = async (): Promise<void> => {
 //  const initOnce = async (): Promise<void> => {
-        _backgroundShaderString = await (await fetch(`/shadertoy.WcdczB.wgsl`)).text();
-//      _backgroundShaderString = await (await fetch(`/shadertoy.WcdczB.wgsl`)).text();
+        _backgroundShaderString = await (await fetch(`/shadertoy.3lf3z2.wgsl`)).text();
+//      _backgroundShaderString = await (await fetch(`/shadertoy.3lf3z2.wgsl`)).text();
         _adapter = (await navigator.gpu.requestAdapter())!;
 //      _adapter = (await navigator.gpu.requestAdapter())!;
         _device = await _adapter.requestDevice({
@@ -82,10 +82,10 @@
 //      });
         _canvasContext = _canvas.getContext("webgpu")!;
 //      _canvasContext = _canvas.getContext("webgpu")!;
-        _presentationFormat = "rgba16float"; // navigator.gpu.getPreferredCanvasFormat();
-//      _presentationFormat = "rgba16float"; // navigator.gpu.getPreferredCanvasFormat();
-        _canvasContext.configure({ alphaMode: "opaque", colorSpace: "display-p3", device: _device, format: _presentationFormat, toneMapping: { mode: "extended", }, usage: GPUTextureUsage.RENDER_ATTACHMENT, viewFormats: [ "rgba16float", ], });
-//      _canvasContext.configure({ alphaMode: "opaque", colorSpace: "display-p3", device: _device, format: _presentationFormat, toneMapping: { mode: "extended", }, usage: GPUTextureUsage.RENDER_ATTACHMENT, viewFormats: [ "rgba16float", ], });
+        _presentationFormat = "rgba8unorm"; // navigator.gpu.getPreferredCanvasFormat();
+//      _presentationFormat = "rgba8unorm"; // navigator.gpu.getPreferredCanvasFormat();
+        _canvasContext.configure({ alphaMode: "opaque", colorSpace: "srgb", device: _device, format: _presentationFormat, toneMapping: { mode: "standard", }, usage: GPUTextureUsage.RENDER_ATTACHMENT, viewFormats: [ "rgba8unorm", ], });
+//      _canvasContext.configure({ alphaMode: "opaque", colorSpace: "srgb", device: _device, format: _presentationFormat, toneMapping: { mode: "standard", }, usage: GPUTextureUsage.RENDER_ATTACHMENT, viewFormats: [ "rgba8unorm", ], });
         _backgroundShaderModule = _device.createShaderModule({
 //      _backgroundShaderModule = _device.createShaderModule({
             label: "GPU_SHADER_MODULE_BACKGROUND",
